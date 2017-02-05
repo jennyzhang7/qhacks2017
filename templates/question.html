@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Question</title>
+
+    <link href="/static/default.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function (){
+            $('#btnSubmit').click(function(){
+                $.ajax({
+                    url: '/getquestion',
+                    data: $('form').serialize(),
+                    type: 'POST',
+                    success: function(response){
+                        console.log(response);
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="dropdown" style="float:left;">
+            <button class="dropbtn">
+                <img src="/static/buttons.png" style="width: 40px; height: 40px">
+            </button>
+            <div class="dropdown-content">
+                <a href="/showgsettings">General Setting</a>
+                <a href="/showqsettings">Daily Question</a>
+                <a href="/showquotes">Quotes</a>
+                <a href="/showhelp">Help</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="middle">
+        <form id="cat" action="/getquestion" method="post">
+            <label>Category</label>
+            <input type="text" name="category">
+
+            <button type="submit" id="btnSubmit">Submit</button>
+        </form>
+        </section>
+    </main>
+</body>
+</html>

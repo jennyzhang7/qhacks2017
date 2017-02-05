@@ -1,1 +1,1 @@
-# qhacks2017
+# qhacks
